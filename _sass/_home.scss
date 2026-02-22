@@ -1,9 +1,33 @@
-// Hero section
+// ── Hero section ──────────────────────────────────
+
 .hero {
-  max-width: $max-width;
-  margin: 0 auto;
-  padding: 4rem $spacing-unit 3rem;
+  position: relative;
+  width: 100%;
+  height: 480px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 640px) {
+    height: 380px;
+  }
+}
+
+#hero-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
   text-align: center;
+  padding: 0 $spacing-unit;
 }
 
 .hero-title {
@@ -11,28 +35,26 @@
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 1rem;
-  color: $color-text;
+  color: #ffffff;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
 
-  .dark-mode & {
-    color: $color-dark-text;
+  @media (max-width: 640px) {
+    font-size: 2.2rem;
   }
 
   span {
     color: $color-accent;
+    text-shadow: 0 0 20px rgba(10, 126, 164, 0.8);
   }
 }
 
 .hero-tagline {
   font-size: 1.2rem;
-  color: $color-text-light;
+  color: rgba(255, 255, 255, 0.75);
   margin-bottom: 2rem;
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
-
-  .dark-mode & {
-    color: $color-dark-text-light;
-  }
 }
 
 .hero-buttons {
@@ -41,6 +63,8 @@
   justify-content: center;
   flex-wrap: wrap;
 }
+
+// ── Buttons ───────────────────────────────────────
 
 .btn {
   display: inline-block;
@@ -69,16 +93,18 @@
 
 .btn-secondary {
   background: transparent;
-  color: $color-accent;
-  border: 2px solid $color-accent;
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.6);
 
   &:hover {
-    background: $color-accent;
+    background: rgba(255, 255, 255, 0.1);
     color: #ffffff;
+    border-color: #ffffff;
   }
 }
 
-// Latest posts section
+// ── Latest posts section ──────────────────────────
+
 .home-section {
   max-width: $max-width;
   margin: 0 auto;
@@ -114,7 +140,8 @@
   }
 }
 
-// Authors section
+// ── Authors section ───────────────────────────────
+
 .authors {
   max-width: $max-width;
   margin: 0 auto;
