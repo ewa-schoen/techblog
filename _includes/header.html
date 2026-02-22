@@ -2,15 +2,114 @@
     <div class="header-inner">
 
         <a class="site-title" href="{{ '/' | relative_url }}">
-            Schoen & <span>Dangerous</span>
+            Schoen <span>&amp;</span> Dangerous
         </a>
 
-        <nav class="site-nav">
+        <nav class="site-nav" id="site-nav">
             <a href="{{ '/code' | relative_url }}">Code</a>
             <a href="{{ '/security' | relative_url }}">Security</a>
             <a href="{{ '/about' | relative_url }}">About</a>
-            <button class="dark-mode-toggle" id="dark-mode-toggle" aria-label="Toggle dark mode">🌙</button>
         </nav>
+
+        <div class="header-actions">
+
+            <!-- Search -->
+            <div class="search-wrapper">
+                <button class="search-toggle" id="search-toggle" aria-label="Toggle search">🔍</button>
+                <div class="search-box" id="search-box">
+                    <input type="text" id="search-input" placeholder="Search posts..." autocomplete="off">
+                    <div class="search-results" id="search-results"></div>
+                </div>
+            </div>
+
+            <!-- Dark mode -->
+            <button class="dark-mode-toggle" id="dark-mode-toggle" aria-label="Toggle dark mode">🌙</button>
+
+            <!-- Hamburger -->
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">☰</button>
+
+        </div>
 
     </div>
 </header>
+
+<script>
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const nav = document.getElementById('site-nav');
+
+    hamburger.addEventListener('click', () => {
+        nav.classList.toggle('is-open');
+        hamburger.textContent = nav.classList.contains('is-open') ? '✕' : '☰';
+    });
+
+    // Dark mode
+    const toggle = document.getElementById('dark-mode-toggle');
+    const body = document.body;
+
+    if (localStorage.getItem('darkMode') === 'true') {
+        body.classList.add('dark-mode');
+        toggle.textContent = '☀️';
+    }
+
+    toggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        const isDark = body.classList.contains('dark-mode');
+        localStorage.setItem('darkMode', isDark);
+        toggle.textContent = isDark ? '☀️' : '🌙';
+    });
+
+    // Search
+    const searchToggle = document.getElementById('search-toggle');
+    const searchBox = document.getElementById('search-box');
+    const searchInput = document.getElementById('search-input');
+    const searchResults = document.getElementById('search-results');
+
+    searchToggle.addEventListener('click', () => {
+        searchBox.classList.toggle('is-open');
+        if (searchBox.classList.contains('is-open')) {
+            searchInput.focus();
+        }
+    });
+
+    // Close search when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!searchBox.contains(e.target) && e.target !== searchToggle) {
+            searchBox.classList.remove('is-open');
+        }
+    });
+
+    // Search logic
+    let searchData = [];
+
+    fetch('{{ "/assets/data/search.json" | relative_url }}')
+        .then(r => r.json())
+        .then(data => { searchData = data; })
+        .catch(() => {});
+
+    searchInput.addEventListener('input', () => {
+        const query = searchInput.value.toLowerCase().trim();
+        searchResults.innerHTML = '';
+
+        if (query.length < 2) return;
+
+        const matches = searchData.filter(post =>
+            post.title.toLowerCase().includes(query) ||
+            post.content.toLowerCase().includes(query) ||
+            post.categories.toLowerCase().includes(query)
+        ).slice(0, 5);
+
+        if (matches.length === 0) {
+            searchResults.innerHTML = '<p class="search-no-results">No results found.</p>';
+            return;
+        }
+
+        matches.forEach(post => {
+            const a = document.createElement('a');
+            a.className = 'search-result-item';
+            a.href = post.url;
+            a.innerHTML = `${post.title}<span>${post.date}</span>`;
+            searchResults.appendChild(a);
+        });
+    });
+</script>

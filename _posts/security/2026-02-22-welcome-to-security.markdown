@@ -4,6 +4,7 @@ title: "Welcome to the Security Section"
 date: 2026-02-22
 categories: [security]
 author: Hans Schoen
+author_key: hans
 ---
 
 Welcome to the **Security** section of Schoen & Dangerous.

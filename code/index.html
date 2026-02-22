@@ -12,29 +12,38 @@ title: Code
     {% if code_posts.size == 0 %}
     <p>No posts yet. Check back soon!</p>
     {% else %}
-    {% for post in code_posts %}
-    <article class="post-card">
+    {% assign posts_by_year = code_posts | group_by_exp: "post", "post.date | date: '%Y'" %}
 
-        <div class="post-meta">
-            <time class="post-date" datetime="{{ post.date | date_to_xmlschema }}">
-                {{ post.date | date: "%B %-d, %Y" }}
-            </time>
-            <div class="post-categories">
-                <span class="post-category">code</span>
-            </div>
-        </div>
-
-        <h2 class="post-title">
-            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    {% for year_group in posts_by_year %}
+    <div class="year-group">
+        <h2 class="year-heading">
+            {{ year_group.name }}
+            <span class="year-count">{{ year_group.items | size }} post{% if year_group.items.size != 1 %}s{% endif %}</span>
         </h2>
 
-        {% if post.excerpt %}
-        <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
-        {% endif %}
+        {% for post in year_group.items %}
+        <article class="post-card">
+            <div class="post-meta">
+                <time class="post-date" datetime="{{ post.date | date_to_xmlschema }}">
+                    {{ post.date | date: "%B %-d, %Y" }}
+                </time>
+                <div class="post-categories">
+                    <span class="post-category">code</span>
+                </div>
+            </div>
 
-        <a class="read-more" href="{{ post.url | relative_url }}">Read more</a>
+            <h2 class="post-title">
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </h2>
 
-    </article>
+            {% if post.excerpt %}
+            <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
+            {% endif %}
+
+            <a class="read-more" href="{{ post.url | relative_url }}">Read more</a>
+        </article>
+        {% endfor %}
+    </div>
     {% endfor %}
     {% endif %}
 </div>

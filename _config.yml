@@ -20,3 +20,15 @@ exclude:
   - Gemfile.lock
 
 port: 4001
+
+authors:
+  ewa:
+    name: Ewa Schoen
+    bio: Developer passionate about Python, clean code and building things that matter.
+    github: ewa-schoen
+    section: /code
+  hans:
+    name: Hans Schoen
+    bio: Security researcher exploring vulnerabilities, defense strategies and the evolving landscape of digital security.
+    github: ewa-schoen
+    section: /security

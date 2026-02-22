@@ -1,0 +1,28 @@
+{% assign author_key = page.author_key %}
+{% assign author = site.authors[author_key] %}
+
+{% if author %}
+<aside class="author-sidebar">
+    <div class="sidebar-avatar">
+        {{ author.name | slice: 0 }}
+    </div>
+
+    <div class="sidebar-name">{{ author.name }}</div>
+    <div class="sidebar-role">
+        {% if author_key == 'ewa' %}Code & Python{% else %}Cybersecurity{% endif %}
+    </div>
+
+    <p class="sidebar-bio">{{ author.bio }}</p>
+
+    <div class="sidebar-links">
+        {% if author.github %}
+        <a href="https://github.com/{{ author.github }}" target="_blank" rel="noopener">
+            GitHub
+        </a>
+        {% endif %}
+        <a href="{{ author.section | relative_url }}">
+            All posts
+        </a>
+    </div>
+</aside>
+{% endif %}

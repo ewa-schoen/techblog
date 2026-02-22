@@ -4,6 +4,7 @@ title: "Welcome to Schoen & Dangerous"
 date: 2026-02-22
 categories: [code]
 author: Ewa Schoen
+author_key: ewa
 ---
 
 Welcome to **Schoen & Dangerous** — a blog by Ewa and Hans Schoen.
