@@ -1,0 +1,77 @@
+---
+layout: default
+title: Home
+---
+
+<!-- Hero -->
+<section class="hero">
+    <h1 class="hero-title">Schoen <span>&</span> Dangerous</h1>
+    <p class="hero-tagline">Python, code and cybersecurity — written by Ewa and Hans Schoen.</p>
+    <div class="hero-buttons">
+        <a href="{{ '/code' | relative_url }}" class="btn btn-primary">Explore Code</a>
+        <a href="{{ '/security' | relative_url }}" class="btn btn-secondary">Explore Security</a>
+    </div>
+</section>
+
+<!-- Latest Posts -->
+<section class="home-section">
+    <div class="section-header">
+        <h2>Latest Posts</h2>
+        <a href="{{ '/code' | relative_url }}">View all →</a>
+    </div>
+
+    {% assign latest_posts = site.posts | limit: 3 %}
+    {% if latest_posts.size == 0 %}
+    <p>No posts yet. Check back soon!</p>
+    {% else %}
+    {% for post in latest_posts %}
+    <article class="post-card">
+        <div class="post-meta">
+            <time class="post-date" datetime="{{ post.date | date_to_xmlschema }}">
+                {{ post.date | date: "%B %-d, %Y" }}
+            </time>
+            {% if post.categories.size > 0 %}
+            <div class="post-categories">
+                {% for category in post.categories %}
+                <span class="post-category">{{ category }}</span>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+
+        <h2 class="post-title">
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        </h2>
+
+        {% if post.excerpt %}
+        <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
+        {% endif %}
+
+        <a class="read-more" href="{{ post.url | relative_url }}">Read more</a>
+    </article>
+    {% endfor %}
+    {% endif %}
+</section>
+
+<!-- Authors -->
+<section class="authors">
+    <div class="section-header">
+        <h2>Meet the Authors</h2>
+    </div>
+
+    <div class="authors-grid">
+        <div class="author-card">
+            <p class="author-name">Ewa Schoen</p>
+            <p class="author-role">Code & Python</p>
+            <p class="author-bio">Developer passionate about Python, clean code and building things that matter.</p>
+            <a class="author-link" href="{{ '/code' | relative_url }}">Read Ewa's posts</a>
+        </div>
+
+        <div class="author-card">
+            <p class="author-name">Hans Schoen</p>
+            <p class="author-role">Cybersecurity</p>
+            <p class="author-bio">Security researcher exploring vulnerabilities, defense strategies and the evolving landscape of digital security.</p>
+            <a class="author-link" href="{{ '/security' | relative_url }}">Read Hans's posts</a>
+        </div>
+    </div>
+</section>

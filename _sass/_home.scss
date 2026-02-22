@@ -1,0 +1,192 @@
+// Hero section
+.hero {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 4rem $spacing-unit 3rem;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  color: $color-text;
+
+  .dark-mode & {
+    color: $color-dark-text;
+  }
+
+  span {
+    color: $color-accent;
+  }
+}
+
+.hero-tagline {
+  font-size: 1.2rem;
+  color: $color-text-light;
+  margin-bottom: 2rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+
+  .dark-mode & {
+    color: $color-dark-text-light;
+  }
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.75rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+
+  &:hover {
+    text-decoration: none;
+    transform: translateY(-2px);
+  }
+}
+
+.btn-primary {
+  background: $color-accent;
+  color: #ffffff;
+
+  &:hover {
+    background: $color-accent-hover;
+    color: #ffffff;
+  }
+}
+
+.btn-secondary {
+  background: transparent;
+  color: $color-accent;
+  border: 2px solid $color-accent;
+
+  &:hover {
+    background: $color-accent;
+    color: #ffffff;
+  }
+}
+
+// Latest posts section
+.home-section {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 2rem $spacing-unit;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid $color-border;
+
+  .dark-mode & {
+    border-bottom-color: $color-dark-border;
+  }
+
+  h2 {
+    margin-bottom: 0;
+    font-size: 1.4rem;
+  }
+
+  a {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: $color-accent;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Authors section
+.authors {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 2rem $spacing-unit 4rem;
+}
+
+.authors-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.author-card {
+  padding: 1.5rem;
+  border: 1px solid $color-border;
+  border-radius: 12px;
+  transition: border-color 0.2s ease;
+
+  .dark-mode & {
+    border-color: $color-dark-border;
+  }
+
+  &:hover {
+    border-color: $color-accent;
+  }
+}
+
+.author-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  color: $color-text;
+
+  .dark-mode & {
+    color: $color-dark-text;
+  }
+}
+
+.author-role {
+  font-size: 0.85rem;
+  color: $color-accent;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.author-bio {
+  font-size: 0.95rem;
+  color: $color-text-light;
+  margin-bottom: 1rem;
+
+  .dark-mode & {
+    color: $color-dark-text-light;
+  }
+}
+
+.author-link {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: $color-accent;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &::after {
+    content: ' →';
+  }
+}
