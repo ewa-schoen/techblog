@@ -3,45 +3,41 @@ layout: default
 title: Code
 ---
 
-<div class="post-list">
-    <h1 style="margin-bottom: 0.5rem;">Code</h1>
-    <p style="color: #6b7280; margin-bottom: 2rem;">Python projects, programming and tech by Ewa.</p>
+<div class="card-page">
+    <div class="card-page-header">
+        <h1>&lt;Code /&gt;</h1>
+        <p>Python projects, programming and tech by Ewa.</p>
+    </div>
 
     {% assign code_posts = site.posts | where_exp: "post", "post.categories contains 'code'" %}
 
     {% if code_posts.size == 0 %}
-    <p>No posts yet. Check back soon!</p>
+    <div class="card-empty">
+        <p>// No posts yet. Check back soon!</p>
+    </div>
     {% else %}
     {% assign posts_by_year = code_posts | group_by_exp: "post", "post.date | date: '%Y'" %}
 
     {% for year_group in posts_by_year %}
-    <div class="year-group">
-        <h2 class="year-heading">
-            {{ year_group.name }}
-            <span class="year-count">{{ year_group.items | size }} post{% if year_group.items.size != 1 %}s{% endif %}</span>
-        </h2>
+    <h2 style="font-family: var(--font-code); margin-bottom: 1.5rem; color: #0a7ea4;">
+        // {{ year_group.name }}
+        <span style="font-size: 0.8rem; opacity: 0.6;">{{ year_group.items | size }} post{% if year_group.items.size != 1 %}s{% endif %}</span>
+    </h2>
 
+    <div class="card-grid">
         {% for post in year_group.items %}
-        <article class="post-card">
-            <div class="post-meta">
-                <time class="post-date" datetime="{{ post.date | date_to_xmlschema }}">
-                    {{ post.date | date: "%B %-d, %Y" }}
-                </time>
-                <div class="post-categories">
-                    <span class="post-category">code</span>
-                </div>
-            </div>
-
-            <h2 class="post-title">
-                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-            </h2>
-
+        <a class="post-card-grid card-code" href="{{ post.url | relative_url }}">
+            <span class="card-tag">[CODE]</span>
+            <div class="card-icon">⌨️</div>
+            <h3 class="card-title">{{ post.title }}</h3>
             {% if post.excerpt %}
-            <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
+            <p class="card-excerpt">{{ post.excerpt | strip_html | truncatewords: 20 }}</p>
             {% endif %}
-
-            <a class="read-more" href="{{ post.url | relative_url }}">Read more</a>
-        </article>
+            <div class="card-meta">
+                {{ post.date | date: "%B %-d, %Y" }}
+                {% if post.author %} · {{ post.author }}{% endif %}
+            </div>
+        </a>
         {% endfor %}
     </div>
     {% endfor %}
