@@ -3,7 +3,9 @@ layout: default
 title: Code
 ---
 
-<div class="card-page">
+<canvas id="matrix-canvas"></canvas>
+
+<div class="card-page card-page-dark">
     <div class="card-page-header">
         <h1>&lt;Code /&gt;</h1>
         <p>Python projects, programming and tech by Ewa.</p>
@@ -43,3 +45,55 @@ title: Code
     {% endfor %}
     {% endif %}
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const matrix = document.getElementById('matrix-canvas');
+        const mCtx = matrix.getContext('2d');
+
+        matrix.width = window.innerWidth;
+        matrix.height = window.innerHeight;
+
+        const ACCENT = '#0a7ea4';
+        const HIGHLIGHT = '#ffffff';
+
+        const chars = 'defimportclassreturnifforselftruenullintstrvar{}()[]=>==01';
+        const fontSize = 14;
+        let columns = Math.floor(matrix.width / fontSize);
+        let drops = Array(columns).fill(1);
+
+        window.addEventListener('resize', () => {
+            matrix.width = window.innerWidth;
+            matrix.height = window.innerHeight;
+            columns = Math.floor(matrix.width / fontSize);
+            drops = Array(columns).fill(1);
+        });
+
+        function drawMatrix() {
+            mCtx.fillStyle = 'rgba(10, 22, 40, 0.05)';
+            mCtx.fillRect(0, 0, matrix.width, matrix.height);
+
+            mCtx.font = fontSize + 'px "Fira Code", monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const char = chars[Math.floor(Math.random() * chars.length)];
+
+                if (drops[i] * fontSize < matrix.height) {
+                    mCtx.fillStyle = HIGHLIGHT;
+                    mCtx.fillText(char, i * fontSize, drops[i] * fontSize);
+                }
+
+                mCtx.fillStyle = ACCENT;
+                mCtx.fillText(char, i * fontSize, (drops[i] - 1) * fontSize);
+
+                if (drops[i] * fontSize > matrix.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 50);
+    });
+</script>
