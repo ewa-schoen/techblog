@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "Welcome to Schoen & Dangerous"
+title: "Welcome to Hack & Stack"
 date: 2026-02-22
 categories: [code]
 author: Ewa Schoen
 author_key: ewa
 ---
 
-Welcome to **Schoen & Dangerous** — a blog by Ewa and Hans Schoen.
+Welcome to **Hack & Stack** — a blog by Ewa and Hans Schoen.
 
 This is where I'll be sharing Python projects, programming tips and everything I learn along the way as a developer.
 

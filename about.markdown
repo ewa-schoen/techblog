@@ -5,12 +5,12 @@ title: About
 
 <div class="post">
   <div class="post-header">
-    <h1 class="post-header-title">About Schoen & Dangerous</h1>
+    <h1 class="post-header-title">About Hack & Stack</h1>
   </div>
 
   <div class="post-content">
     <p>
-      Welcome to <strong>Schoen & Dangerous</strong> — a blog by Ewa and Hans Schoen.
+      Welcome to <strong>Hack & Stack</strong> — a blog by Ewa and Hans Schoen.
     </p>
 
     <h2>Ewa — Code</h2>
@@ -25,7 +25,7 @@ title: About
       landscape of digital security. I write about what I find, what I learn and what keeps me up at night.
     </p>
 
-    <h2>Why Schoen & Dangerous?</h2>
+    <h2>Why Hack & Stack?</h2>
     <p>
       Schoen means beautiful in German — our surname and our approach to work.
       Dangerous because security research and pushing boundaries is exactly that.
