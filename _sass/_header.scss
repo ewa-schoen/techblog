@@ -1,0 +1,88 @@
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: $header-height;
+  background-color: $color-background;
+  border-bottom: 1px solid $color-border;
+  display: flex;
+  align-items: center;
+
+  .dark-mode & {
+    background-color: $color-dark-background;
+    border-bottom-color: $color-dark-border;
+  }
+}
+
+.header-inner {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 0 $spacing-unit;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: $color-text;
+  text-decoration: none;
+
+  .dark-mode & {
+    color: $color-dark-text;
+  }
+
+  &:hover {
+    color: $color-accent;
+    text-decoration: none;
+  }
+
+  span {
+    color: $color-accent;
+  }
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+
+  a {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: $color-text-light;
+    text-decoration: none;
+
+    .dark-mode & {
+      color: $color-dark-text-light;
+    }
+
+    &:hover {
+      color: $color-accent;
+      text-decoration: none;
+    }
+  }
+}
+
+.dark-mode-toggle {
+  background: none;
+  border: 1px solid $color-border;
+  border-radius: 6px;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  font-size: 1rem;
+  color: $color-text;
+  transition: all 0.2s ease;
+
+  .dark-mode & {
+    border-color: $color-dark-border;
+    color: $color-dark-text;
+  }
+
+  &:hover {
+    border-color: $color-accent;
+    color: $color-accent;
+  }
+}

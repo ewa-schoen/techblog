@@ -1,0 +1,40 @@
+---
+layout: default
+title: Security
+---
+
+<div class="post-list">
+    <h1 style="margin-bottom: 0.5rem;">Security</h1>
+    <p style="color: #6b7280; margin-bottom: 2rem;">Cybersecurity research and insights by Hans.</p>
+
+    {% assign security_posts = site.posts | where_exp: "post", "post.categories contains 'security'" %}
+
+    {% if security_posts.size == 0 %}
+    <p>No posts yet. Check back soon!</p>
+    {% else %}
+    {% for post in security_posts %}
+    <article class="post-card">
+
+        <div class="post-meta">
+            <time class="post-date" datetime="{{ post.date | date_to_xmlschema }}">
+                {{ post.date | date: "%B %-d, %Y" }}
+            </time>
+            <div class="post-categories">
+                <span class="post-category">security</span>
+            </div>
+        </div>
+
+        <h2 class="post-title">
+            <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        </h2>
+
+        {% if post.excerpt %}
+        <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
+        {% endif %}
+
+        <a class="read-more" href="{{ post.url | relative_url }}">Read more</a>
+
+    </article>
+    {% endfor %}
+    {% endif %}
+</div>

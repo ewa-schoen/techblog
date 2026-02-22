@@ -1,0 +1,166 @@
+// Post list on homepage
+.post-list {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 2rem $spacing-unit;
+}
+
+.post-card {
+  padding: 2rem 0;
+  border-bottom: 1px solid $color-border;
+
+  .dark-mode & {
+    border-bottom-color: $color-dark-border;
+  }
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.post-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.post-date {
+  font-size: $font-size-small;
+  color: $color-text-light;
+
+  .dark-mode & {
+    color: $color-dark-text-light;
+  }
+}
+
+.post-categories {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.post-category {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: $color-accent;
+  background: rgba($color-accent, 0.1);
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.post-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+
+  a {
+    color: $color-text;
+    text-decoration: none;
+
+    .dark-mode & {
+      color: $color-dark-text;
+    }
+
+    &:hover {
+      color: $color-accent;
+      text-decoration: none;
+    }
+  }
+}
+
+.post-excerpt {
+  color: $color-text-light;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+
+  .dark-mode & {
+    color: $color-dark-text-light;
+  }
+}
+
+.read-more {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: $color-accent;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-accent-hover;
+    text-decoration: none;
+  }
+
+  &::after {
+    content: ' →';
+  }
+}
+
+// Single post page
+.post {
+  max-width: $max-width;
+  margin: 0 auto;
+  padding: 2rem $spacing-unit;
+}
+
+.post-header {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid $color-border;
+
+  .dark-mode & {
+    border-bottom-color: $color-dark-border;
+  }
+}
+
+.post-header-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  color: $color-text;
+
+  .dark-mode & {
+    color: $color-dark-text;
+  }
+}
+
+.post-content {
+  h1, h2, h3, h4 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: $color-text;
+
+    .dark-mode & {
+      color: $color-dark-text;
+    }
+  }
+
+  h2 {
+    font-size: 1.6rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid $color-border;
+
+    .dark-mode & {
+      border-bottom-color: $color-dark-border;
+    }
+  }
+
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  ul, ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1.2rem;
+
+    li {
+      margin-bottom: 0.4rem;
+    }
+  }
+
+  img {
+    border-radius: 8px;
+    margin: 1.5rem 0;
+  }
+}

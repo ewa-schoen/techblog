@@ -1,0 +1,46 @@
+// Syntax highlighting
+.highlight {
+  background: $color-code-bg;
+  border-radius: 8px;
+  margin-bottom: 1.5rem;
+  overflow-x: auto;
+
+  .dark-mode & {
+    background: $color-dark-code-bg;
+  }
+
+  pre {
+    margin-bottom: 0;
+    padding: 1.5rem;
+    background: none;
+    border-radius: 0;
+  }
+
+  // Comments
+  .c, .c1, .cm, .cs    { color: #6b7280; font-style: italic; }
+  // Keywords
+  .k, .kd, .kn, .kp    { color: #7c3aed; font-weight: 600; }
+  // Strings
+  .s, .s1, .s2, .se    { color: #059669; }
+  // Numbers
+  .m, .mi, .mf          { color: #d97706; }
+  // Functions
+  .nf, .nx              { color: #2563eb; }
+  // Variables
+  .n, .na, .nb          { color: $color-text; }
+  // Operators
+  .o, .ow               { color: #db2777; }
+  // Class names
+  .nc, .nn              { color: #0a7ea4; font-weight: 600; }
+  // Tags (HTML/XML)
+  .nt                   { color: #dc2626; }
+  // Attributes
+  .na                   { color: #d97706; }
+  // Boolean
+  .kc                   { color: #7c3aed; }
+
+  // Dark mode overrides
+  .dark-mode & {
+    .n, .na, .nb        { color: $color-dark-text; }
+  }
+}

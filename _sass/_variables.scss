@@ -1,0 +1,30 @@
+// Typography
+$font-primary: 'Inter', sans-serif;
+$font-code: 'Fira Code', monospace;
+
+$font-size-base: 18px;
+$font-size-small: 14px;
+$font-size-large: 22px;
+
+$line-height-base: 1.8;
+
+// Colours
+$color-background: #ffffff;
+$color-text: #1a1a2e;
+$color-text-light: #6b7280;
+$color-accent: #0a7ea4;
+$color-accent-hover: #086a8a;
+$color-border: #e5e7eb;
+$color-code-bg: #f3f4f6;
+
+// Dark mode
+$color-dark-background: #0f172a;
+$color-dark-text: #e2e8f0;
+$color-dark-text-light: #94a3b8;
+$color-dark-border: #1e293b;
+$color-dark-code-bg: #1e293b;
+
+// Layout
+$max-width: 780px;
+$header-height: 64px;
+$spacing-unit: 1.5rem;

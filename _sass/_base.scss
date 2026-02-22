@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: $font-size-base;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: $font-primary;
+  color: $color-text;
+  background-color: $color-background;
+  line-height: $line-height-base;
+  -webkit-font-smoothing: antialiased;
+}
+
+// Dark mode
+body.dark-mode {
+  color: $color-dark-text;
+  background-color: $color-dark-background;
+}
+
+a {
+  color: $color-accent;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-accent-hover;
+    text-decoration: underline;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.3;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+p {
+  margin-bottom: 1.2rem;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+code {
+  font-family: $font-code;
+  font-size: 0.875rem;
+  background: $color-code-bg;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+
+  .dark-mode & {
+    background: $color-dark-code-bg;
+  }
+}
+
+pre {
+  background: $color-code-bg;
+  padding: 1.5rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 1.5rem;
+
+  .dark-mode & {
+    background: $color-dark-code-bg;
+  }
+
+  code {
+    background: none;
+    padding: 0;
+  }
+}
+
+blockquote {
+  border-left: 4px solid $color-accent;
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  color: $color-text-light;
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}

@@ -1,18 +1,35 @@
 ---
-layout: page
+layout: default
 title: About
-permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+<div class="post">
+  <div class="post-header">
+    <h1 class="post-header-title">About Schoen & Dangerous</h1>
+  </div>
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
+  <div class="post-content">
+    <p>
+      Welcome to <strong>Schoen & Dangerous</strong> — a blog by Ewa and Hans Schoen.
+    </p>
 
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+    <h2>Ewa — Code</h2>
+    <p>
+      I'm a developer passionate about Python, clean code and building things that matter.
+      On this blog I share projects, tips and everything I learn along the way.
+    </p>
 
+    <h2>Hans — Security</h2>
+    <p>
+      I work in cybersecurity, exploring vulnerabilities, defense strategies and the ever evolving
+      landscape of digital security. I write about what I find, what I learn and what keeps me up at night.
+    </p>
 
-[jekyll-organization]: https://github.com/jekyll
+    <h2>Why Schoen & Dangerous?</h2>
+    <p>
+      Schoen means beautiful in German — our surname and our approach to work.
+      Dangerous because security research and pushing boundaries is exactly that.
+      Together we cover both sides of the tech world.
+    </p>
+  </div>
+</div>
