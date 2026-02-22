@@ -7,6 +7,25 @@
   margin: 0 auto;
 }
 
+.card-page-dark {
+  background: #0a1628;
+  min-height: 100vh;
+}
+
+.card-page-dark .card-page-header {
+  h1 {
+    color: #ffffff;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.6);
+  }
+}
+
+.card-page-dark h2 {
+  color: inherit;
+}
+
 .card-page-header {
   margin-bottom: 3rem;
 
@@ -60,6 +79,14 @@
   border: 1px solid $color-border;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 
+  // Always dark on card-page-dark
+  .card-page-dark & {
+    background: rgba(13, 27, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: none;
+    backdrop-filter: blur(4px);
+  }
+
   .dark-mode & {
     background: #0d1b2a;
     border: 1px solid rgba(255, 255, 255, 0.06);
@@ -69,12 +96,14 @@
   &:hover {
     text-decoration: none;
     transform: translateY(-4px);
-
-    // Light mode hover
     border-color: var(--card-accent, #{$color-accent});
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 
-    // Dark mode hover
+    .card-page-dark & {
+      border-color: var(--card-accent, #{$color-accent});
+      box-shadow: 0 0 24px rgba(var(--card-accent-rgb, 10, 126, 164), 0.3);
+    }
+
     .dark-mode & {
       border-color: var(--card-accent, #{$color-accent});
       box-shadow: 0 0 20px rgba(var(--card-accent-rgb, 10, 126, 164), 0.2);
@@ -130,6 +159,10 @@
   .dark-mode & {
     color: $color-dark-text;
   }
+
+  .card-page-dark & {
+    color: #ffffff;
+  }
 }
 
 .card-excerpt {
@@ -141,6 +174,10 @@
   .dark-mode & {
     color: $color-dark-text-light;
   }
+
+  .card-page-dark & {
+    color: rgba(255, 255, 255, 0.6);
+  }
 }
 
 .card-meta {
@@ -150,6 +187,10 @@
 
   .dark-mode & {
     color: $color-dark-text-light;
+  }
+
+  .card-page-dark & {
+    color: rgba(255, 255, 255, 0.4);
   }
 }
 
@@ -177,4 +218,20 @@
   .dark-mode & {
     color: $color-dark-text-light;
   }
+
+  .card-page-dark & {
+    color: rgba(255, 255, 255, 0.4);
+  }
+}
+
+// ── Matrix background canvas ──────────────────────
+
+#matrix-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
 }
