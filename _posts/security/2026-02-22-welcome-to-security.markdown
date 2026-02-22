@@ -7,7 +7,7 @@ author: Hans Schoen
 author_key: hans
 ---
 
-Welcome to the **Security** section of Schoen & Dangerous.
+Welcome to the **Security** section of Hack & Stack.
 
 This is where I'll be sharing cybersecurity research, insights and everything I encounter in the ever evolving world of digital security.
 
