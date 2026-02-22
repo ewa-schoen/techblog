@@ -19,24 +19,5 @@
 
 {% include footer.html %}
 
-<script>
-    // Dark mode toggle
-    const toggle = document.getElementById('dark-mode-toggle');
-    const body = document.body;
-
-    // Load saved preference
-    if (localStorage.getItem('darkMode') === 'true') {
-        body.classList.add('dark-mode');
-        toggle.textContent = '☀️';
-    }
-
-    toggle.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-        const isDark = body.classList.contains('dark-mode');
-        localStorage.setItem('darkMode', isDark);
-        toggle.textContent = isDark ? '☀️' : '🌙';
-    });
-</script>
-
 </body>
 </html>
