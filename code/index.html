@@ -6,9 +6,14 @@ title: Code
 <canvas id="matrix-canvas"></canvas>
 
 <div class="card-page card-page-dark">
-    <div class="card-page-header">
-        <h1>&lt;Code /&gt;</h1>
-        <p>Python projects, programming and tech by Ewa.</p>
+    <div class="terminal-header card-code">
+        <div class="terminal-boot" id="terminal-boot"></div>
+        <h1 class="page-title-glow">&lt;Code /&gt;</h1>
+        <div class="stats-bar">
+            <div class="stat-item">[ <span>{{ site.posts | where_exp: "post", "post.categories contains 'code'" | size }}</span> posts ]</div>
+            <div class="stat-item">[ <span>1</span> author ]</div>
+            <div class="stat-item">[ est. <span>2026</span> ]</div>
+        </div>
     </div>
 
     {% assign code_posts = site.posts | where_exp: "post", "post.categories contains 'code'" %}
@@ -48,6 +53,33 @@ title: Code
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+
+        // Terminal boot sequence
+        const bootLines = [
+            { text: 'initializing code environment...', type: 'normal', delay: 0 },
+            { text: 'loading Python runtime...', type: 'normal', delay: 400 },
+            { text: 'runtime loaded successfully', type: 'success', delay: 800 },
+            { text: 'fetching posts...', type: 'normal', delay: 1200 },
+            { text: 'all systems ready.', type: 'success', delay: 1600 },
+        ];
+
+        const bootEl = document.getElementById('terminal-boot');
+        if (bootEl) {
+            bootLines.forEach((line) => {
+                setTimeout(() => {
+                    const div = document.createElement('div');
+                    div.className = 'terminal-line';
+                    div.style.animationDelay = '0ms';
+                    div.innerHTML = `
+          <span class="terminal-prompt">&gt;_</span>
+          <span class="terminal-text ${line.type === 'success' ? 'success' : ''}">${line.text}</span>
+        `;
+                    bootEl.appendChild(div);
+                }, line.delay);
+            });
+        }
+
+        // Matrix animation
         const matrix = document.getElementById('matrix-canvas');
         const mCtx = matrix.getContext('2d');
 
@@ -95,5 +127,6 @@ title: Code
         }
 
         setInterval(drawMatrix, 50);
-    });
+
+    }); // end DOMContentLoaded
 </script>
