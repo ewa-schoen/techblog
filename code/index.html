@@ -6,14 +6,34 @@ title: Code
 <canvas id="matrix-canvas"></canvas>
 
 <div class="card-page card-page-dark">
-    <div class="terminal-header card-code">
-        <div class="terminal-boot" id="terminal-boot"></div>
-        <h1 class="page-title-glow">&lt;Code /&gt;</h1>
-        <div class="stats-bar">
-            <div class="stat-item">[ <span>{{ site.posts | where_exp: "post", "post.categories contains 'code'" | size }}</span> posts ]</div>
-            <div class="stat-item">[ <span>1</span> author ]</div>
-            <div class="stat-item">[ est. <span>2026</span> ]</div>
+
+    <div class="code-hero-split">
+        <div class="vscode-window">
+            <div class="vscode-titlebar">
+                <div class="vscode-dots">
+                    <span class="dot-red"></span>
+                    <span class="dot-yellow"></span>
+                    <span class="dot-green"></span>
+                </div>
+                <span class="vscode-filename">hack-and-stack — code</span>
+            </div>
+            <div class="vscode-tabs">
+                <div class="vscode-tab active">welcome.py</div>
+                <div class="vscode-tab">utils.py</div>
+            </div>
+            <div class="vscode-editor">
+                <div class="vscode-line-numbers" id="line-numbers">1</div>
+                <div class="vscode-code" id="vscode-code"><span class="vscode-cursor"></span></div>
+            </div>
         </div>
+
+        <div class="code-hero-right"></div>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stat-item">[ <span>{{ site.posts | where_exp: "post", "post.categories contains 'code'" | size }}</span> posts ]</div>
+        <div class="stat-item">[ <span>1</span> author ]</div>
+        <div class="stat-item">[ est. <span>2026</span> ]</div>
     </div>
 
     {% assign code_posts = site.posts | where_exp: "post", "post.categories contains 'code'" %}
@@ -54,30 +74,71 @@ title: Code
 <script>
     document.addEventListener('DOMContentLoaded', function() {
 
-        // Terminal boot sequence
-        const bootLines = [
-            { text: 'initializing code environment...', type: 'normal', delay: 0 },
-            { text: 'loading Python runtime...', type: 'normal', delay: 400 },
-            { text: 'runtime loaded successfully', type: 'success', delay: 800 },
-            { text: 'fetching posts...', type: 'normal', delay: 1200 },
-            { text: 'all systems ready.', type: 'success', delay: 1600 },
+        // VS Code typing animation
+        const lines = [
+            '<span class="syn-keyword">dead</span> = <span class="syn-keyword">False</span>',
+            '<span class="syn-keyword">def</span> <span class="syn-function">goDeeper</span>():',
+            '    <span class="syn-keyword">if</span> <span class="syn-param">dead</span>==<span class="syn-keyword">True</span>: <span class="syn-keyword">return</span>',
+            '    <span class="syn-function">goDeeper</span>()',
+            '<span class="syn-keyword">if</span> __name__ == <span class="syn-string">"__main__"</span>:',
+            '    <span class="syn-function">goDeeper</span>()',
         ];
 
-        const bootEl = document.getElementById('terminal-boot');
-        if (bootEl) {
-            bootLines.forEach((line) => {
-                setTimeout(() => {
-                    const div = document.createElement('div');
-                    div.className = 'terminal-line';
-                    div.style.animationDelay = '0ms';
-                    div.innerHTML = `
-          <span class="terminal-prompt">&gt;_</span>
-          <span class="terminal-text ${line.type === 'success' ? 'success' : ''}">${line.text}</span>
-        `;
-                    bootEl.appendChild(div);
-                }, line.delay);
-            });
+        const codeEl = document.getElementById('vscode-code');
+        const lineNumEl = document.getElementById('line-numbers');
+        let lineIndex = 0;
+        let charIndex = 0;
+        let currentHTML = '';
+        let visibleLines = 0;
+
+        function updateLineNumbers(count) {
+            lineNumEl.innerHTML = Array.from({length: count}, (_, i) => i + 1).join('<br>');
         }
+
+        function typeLine() {
+            if (lineIndex >= lines.length) {
+                codeEl.innerHTML = currentHTML + '<span class="vscode-cursor"></span>';
+                return;
+            }
+
+            const line = lines[lineIndex];
+
+            if (charIndex === 0) {
+                visibleLines++;
+                updateLineNumbers(visibleLines);
+            }
+
+            const stripped = line.replace(/<[^>]+>/g, '');
+
+            if (charIndex <= stripped.length) {
+                let revealed = '';
+                let count = 0;
+                let i = 0;
+                while (i < line.length) {
+                    if (line[i] === '<') {
+                        const end = line.indexOf('>', i);
+                        revealed += line.substring(i, end + 1);
+                        i = end + 1;
+                    } else {
+                        if (count < charIndex) {
+                            revealed += line[i];
+                            count++;
+                        }
+                        i++;
+                    }
+                }
+                codeEl.innerHTML = currentHTML + revealed + '<span class="vscode-cursor"></span>';
+                charIndex++;
+                setTimeout(typeLine, 30);
+            } else {
+                currentHTML += line + '\n';
+                charIndex = 0;
+                lineIndex++;
+                setTimeout(typeLine, 80);
+            }
+        }
+
+        setTimeout(typeLine, 500);
 
         // Matrix animation
         const matrix = document.getElementById('matrix-canvas');
@@ -104,7 +165,6 @@ title: Code
         function drawMatrix() {
             mCtx.fillStyle = 'rgba(10, 22, 40, 0.05)';
             mCtx.fillRect(0, 0, matrix.width, matrix.height);
-
             mCtx.font = fontSize + 'px "Fira Code", monospace';
 
             for (let i = 0; i < drops.length; i++) {
